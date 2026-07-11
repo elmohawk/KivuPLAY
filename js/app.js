@@ -1,37 +1,278 @@
-const loader = document.getElementById("loader");
+/* ===========================================
+   KIVUSTREAM PRO
+   MAIN APPLICATION
+=========================================== */
 
-window.addEventListener("load", () => {
-    setTimeout(() => {
-        loader.style.display = "none";
-    }, 1200);
-});
 
-const movies = [
-    {
-        title: "John Wick",
-        year: 2023,
-        rating: "8.2",
-        poster: "https://image.tmdb.org/t/p/w500/fZPSd91yGE9fCcCe6OoQr6E3Bev.jpg"
-    },
-    {
-        title: "Avatar",
-        year: 2022,
-        rating: "8.0",
-        poster: "https://image.tmdb.org/t/p/w500/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg"
-    }
-];
+import { renderNavbar, initNavbar }
 
-const grid = document.getElementById("movie-grid");
+from "./components/navbar.js";
 
-movies.forEach(movie => {
-    grid.innerHTML += `
-        <div class="movie-card">
-            <img class="poster" src="${movie.poster}" alt="${movie.title}">
-            <div class="movie-info">
-                <h3>${movie.title}</h3>
-                <span>⭐ ${movie.rating}</span><br>
-                <small>${movie.year}</small>
-            </div>
-        </div>
-    `;
-});
+
+import { renderHero }
+
+from "./components/hero.js";
+
+
+
+import { getTrending }
+
+from "./api/tmdb.js";
+
+
+import { renderMovieCards }
+
+from "./components/movieCard.js";
+
+
+
+
+
+/* ===========================================
+   APP START
+=========================================== */
+
+
+document.addEventListener(
+
+"DOMContentLoaded",
+
+async ()=>{
+
+
+    await startApp();
+
+
+}
+
+);
+
+
+
+
+
+
+async function startApp(){
+
+
+
+    console.log(
+        "KIVUSTREAM STARTING..."
+    );
+
+
+
+    /*
+    Navbar
+    */
+
+
+    renderNavbar();
+
+
+    initNavbar();
+
+
+
+
+
+    /*
+    Hero
+    */
+
+
+    await renderHero();
+
+
+
+
+
+    /*
+    Trending Movies
+    */
+
+
+    await loadTrending();
+
+
+
+
+
+
+    /*
+    Remove Loader
+    */
+
+
+    hideLoader();
+
+
+
+}
+
+
+
+
+
+
+
+/* ===========================================
+   TRENDING
+=========================================== */
+
+
+async function loadTrending(){
+
+
+
+const container =
+
+document.querySelector(
+
+"#trending"
+
+);
+
+
+
+if(!container)
+
+return;
+
+
+
+
+
+const data =
+
+await getTrending();
+
+
+
+
+
+const movies =
+
+data?.results || [];
+
+
+
+
+
+container.innerHTML = `
+
+
+<div class="home-section">
+
+
+<div class="section-header">
+
+<div class="section-heading">
+
+<div class="section-icon">
+
+<i class="fa-solid fa-fire"></i>
+
+</div>
+
+
+<h2>
+
+Trending
+
+</h2>
+
+
+</div>
+
+</div>
+
+
+
+<div class="movie-slider">
+
+
+</div>
+
+
+</div>
+
+
+`;
+
+
+
+
+
+
+const slider =
+
+container.querySelector(
+
+".movie-slider"
+
+);
+
+
+
+renderMovieCards(
+
+slider,
+
+movies
+
+);
+
+
+
+}
+
+
+
+
+
+
+
+
+/* ===========================================
+   LOADER
+=========================================== */
+
+
+function hideLoader(){
+
+
+
+const loader =
+
+document.getElementById(
+
+"loader"
+
+);
+
+
+
+if(!loader)
+
+return;
+
+
+
+
+setTimeout(()=>{
+
+
+loader.classList.add(
+
+"hide"
+
+);
+
+
+
+},1000);
+
+
+
+}
