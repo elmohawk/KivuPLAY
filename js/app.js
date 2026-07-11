@@ -2,6 +2,9 @@
    KIVUSTREAM PRO
    MAIN APPLICATION
 =========================================== */
+import { loadHome }
+
+from "./pages/home.js";
 import {
 
 getMovies
@@ -186,7 +189,7 @@ async function startApp(){
     /*
     Trending Movies
     */
-await loadSupabaseMovies();
+await loadHome();
     /*
     Remove Loader
     */
