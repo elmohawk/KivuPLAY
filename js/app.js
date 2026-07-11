@@ -2,7 +2,13 @@
    KIVUSTREAM PRO
    MAIN APPLICATION
 =========================================== */
+import {
 
+getMovies
+
+}
+
+from "./api/supabase.js";
 
 import { renderNavbar, initNavbar }
 
