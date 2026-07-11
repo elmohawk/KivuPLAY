@@ -165,13 +165,9 @@ async ()=>{
 
 async function startApp(){
 
-
-
     console.log(
         "KIVUSTREAM STARTING..."
     );
-
-
 
     /*
     Navbar
@@ -182,6 +178,7 @@ async function startApp(){
 
 
     initNavbar();
+   renderFooter();
 
     /*
     Hero
