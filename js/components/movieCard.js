@@ -201,6 +201,7 @@ class="card-play"
 href="watch.html?id=${id}"
 
 >
+</a>
 <i class="fa-solid fa-play"></i>
 
 
