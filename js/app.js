@@ -2,6 +2,9 @@
    KIVUSTREAM PRO
    MAIN APPLICATION
 =========================================== */
+import { renderFooter }
+
+from "./components/footer.js";
 import { loadHome }
 
 from "./pages/home.js";
