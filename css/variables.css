@@ -260,3 +260,98 @@ ul{
 list-style:none;
 
 }
+/* ===========================
+   COMPONENT VARIABLES
+=========================== */
+
+
+/* NAVBAR */
+
+--navbar-bg:
+
+rgba(11,18,32,.88);
+
+
+
+/* HERO */
+
+--hero-overlay:
+
+linear-gradient(
+
+90deg,
+
+rgba(11,18,32,.95),
+
+rgba(11,18,32,.45),
+
+transparent
+
+);
+
+
+
+/* MOVIE CARDS */
+
+--card-hover:
+
+translateY(-10px);
+
+
+
+--card-gap:
+
+18px;
+
+
+
+
+/* GRADIENTS */
+
+
+--blue-green-gradient:
+
+linear-gradient(
+
+135deg,
+
+#2563EB,
+
+#10B981
+
+);
+
+
+
+--yellow-gradient:
+
+linear-gradient(
+
+135deg,
+
+#FACC15,
+
+#F59E0B
+
+);
+
+
+
+
+/* GLASS EFFECT */
+
+
+--glass-blur:
+
+blur(12px);
+
+
+
+/* CONTAINER */
+
+
+--container-padding:
+
+5%;
+
+
