@@ -30,10 +30,6 @@ import { renderMovieCards }
 
 from "./components/movieCard.js";
 
-
-
-
-
 /* ===========================================
    APP START
 =========================================== */
@@ -48,15 +44,9 @@ async ()=>{
 
     await startApp();
 
-
 }
 
 );
-
-
-
-
-
 
 async function startApp(){
 
@@ -78,58 +68,29 @@ async function startApp(){
 
     initNavbar();
 
-
-
-
-
     /*
     Hero
     */
 
-
     await renderHero();
-
-
-
-
 
     /*
     Trending Movies
     */
-
-
-    await loadTrending();
-
-
-
-
-
-
+await loadSupabaseMovies();
     /*
     Remove Loader
     */
 
-
     hideLoader();
 
-
-
 }
-
-
-
-
-
-
 
 /* ===========================================
    TRENDING
 =========================================== */
 
-
 async function loadTrending(){
-
-
 
 const container =
 
@@ -145,25 +106,13 @@ if(!container)
 
 return;
 
-
-
-
-
 const data =
 
 await getTrending();
 
-
-
-
-
 const movies =
 
 data?.results || [];
-
-
-
-
 
 container.innerHTML = `
 
@@ -206,11 +155,6 @@ Trending
 
 `;
 
-
-
-
-
-
 const slider =
 
 container.querySelector(
@@ -218,8 +162,6 @@ container.querySelector(
 ".movie-slider"
 
 );
-
-
 
 renderMovieCards(
 
@@ -233,21 +175,12 @@ movies
 
 }
 
-
-
-
-
-
-
-
 /* ===========================================
    LOADER
 =========================================== */
 
 
 function hideLoader(){
-
-
 
 const loader =
 
@@ -257,25 +190,17 @@ document.getElementById(
 
 );
 
-
-
 if(!loader)
 
 return;
 
-
-
-
 setTimeout(()=>{
-
 
 loader.classList.add(
 
 "hide"
 
 );
-
-
 
 },1000);
 
