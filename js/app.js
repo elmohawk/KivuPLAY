@@ -2,6 +2,14 @@
    KIVUSTREAM PRO
    MAIN APPLICATION
 =========================================== */
+import {
+
+renderSearch,
+initSearch
+
+}
+
+from "./components/search.js";
 import { renderFooter }
 
 from "./components/footer.js";
@@ -179,7 +187,9 @@ async function startApp(){
 
     initNavbar();
    renderFooter();
+    renderSearch();
 
+initSearch();
     /*
     Hero
     */
