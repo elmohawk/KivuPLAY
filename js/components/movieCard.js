@@ -194,17 +194,13 @@ loading="lazy"
 <div class="card-actions">
 
 
-<button
+<a
 
 class="card-play"
 
-data-id="${id}"
-
-title="Watch"
+href="watch.html?id=${id}"
 
 >
-
-
 <i class="fa-solid fa-play"></i>
 
 
