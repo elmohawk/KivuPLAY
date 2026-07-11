@@ -1,0 +1,262 @@
+/* ===========================================
+   KIVUSTREAM PRO
+   DESIGN SYSTEM
+=========================================== */
+
+:root{
+
+/* ===========================
+   BRAND COLORS
+=========================== */
+
+--primary:#2563EB;
+--primary-hover:#1D4ED8;
+
+--secondary:#10B981;
+--secondary-hover:#059669;
+
+--accent:#FACC15;
+--accent-hover:#EAB308;
+
+--success:#22C55E;
+--warning:#F59E0B;
+--danger:#EF4444;
+
+/* ===========================
+   BACKGROUNDS
+=========================== */
+
+--bg:#0B1220;
+--bg-secondary:#111827;
+--surface:#172033;
+--surface-hover:#1F2937;
+--surface-light:#263246;
+
+/* ===========================
+   TEXT
+=========================== */
+
+--text:#FFFFFF;
+--text-secondary:#D1D5DB;
+--text-muted:#94A3B8;
+--text-disabled:#64748B;
+
+/* ===========================
+   BORDERS
+=========================== */
+
+--border:#334155;
+--border-light:#475569;
+
+/* ===========================
+   BADGES
+=========================== */
+
+--hd:#2563EB;
+--premium:#FACC15;
+--new:#10B981;
+--top10:#EF4444;
+
+/* ===========================
+   OVERLAYS
+=========================== */
+
+--overlay-dark:rgba(0,0,0,.72);
+--overlay-light:rgba(255,255,255,.08);
+
+/* ===========================
+   GLASS
+=========================== */
+
+--glass:rgba(255,255,255,.06);
+--glass-border:rgba(255,255,255,.12);
+
+/* ===========================
+   SHADOWS
+=========================== */
+
+--shadow-xs:0 2px 6px rgba(0,0,0,.15);
+
+--shadow-sm:0 6px 16px rgba(0,0,0,.22);
+
+--shadow-md:0 12px 28px rgba(0,0,0,.30);
+
+--shadow-lg:0 20px 40px rgba(0,0,0,.40);
+
+--shadow-xl:0 35px 80px rgba(0,0,0,.55);
+
+/* ===========================
+   RADIUS
+=========================== */
+
+--radius-xs:6px;
+--radius-sm:10px;
+--radius-md:16px;
+--radius-lg:22px;
+--radius-xl:30px;
+--radius-round:999px;
+
+/* ===========================
+   SPACING
+=========================== */
+
+--space-1:4px;
+--space-2:8px;
+--space-3:12px;
+--space-4:16px;
+--space-5:20px;
+--space-6:24px;
+--space-7:32px;
+--space-8:40px;
+--space-9:48px;
+--space-10:64px;
+--space-11:80px;
+--space-12:100px;
+
+/* ===========================
+   LAYOUT
+=========================== */
+
+--container:1600px;
+
+--navbar-height:80px;
+
+--hero-height:88vh;
+
+--card-width:220px;
+
+--card-height:330px;
+
+/* ===========================
+   TRANSITIONS
+=========================== */
+
+--transition-fast:.18s ease;
+
+--transition:.3s ease;
+
+--transition-slow:.45s ease;
+
+/* ===========================
+   Z INDEX
+=========================== */
+
+--z-loader:99999;
+--z-modal:9999;
+--z-navbar:1000;
+--z-overlay:900;
+
+/* ===========================
+   TYPOGRAPHY
+=========================== */
+
+--font-main:"Inter",;
+
+--fw-light:300;
+--fw-normal:400;
+--fw-medium:500;
+--fw-semibold:600;
+--fw-bold:700;
+--fw-extrabold:800;
+
+--fs-xs:.75rem;
+--fs-sm:.875rem;
+--fs-md:1rem;
+--fs-lg:1.15rem;
+--fs-xl:1.4rem;
+--fs-2xl:2rem;
+--fs-3xl:3rem;
+--fs-4xl:4rem;
+
+/* ===========================
+   POSTERS
+=========================== */
+
+--poster-radius:18px;
+
+--poster-shadow:
+0 12px 30px rgba(0,0,0,.45);
+
+/* ===========================
+   BUTTONS
+=========================== */
+
+--btn-height:48px;
+
+--btn-radius:14px;
+
+/* ===========================
+   SEARCH
+=========================== */
+
+--search-height:56px;
+
+/* ===========================
+   FOOTER
+=========================== */
+
+--footer-bg:#08111E;
+
+}
+
+/* ===========================================
+   RESET
+=========================================== */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+
+scroll-behavior:smooth;
+
+}
+
+body{
+
+background:var(--bg);
+
+color:var(--text);
+
+font-family:var(--font-main);
+
+overflow-x:hidden;
+
+}
+
+button{
+
+font-family:inherit;
+
+}
+
+input{
+
+font-family:inherit;
+
+}
+
+img{
+
+display:block;
+
+max-width:100%;
+
+}
+
+a{
+
+text-decoration:none;
+
+color:inherit;
+
+}
+
+ul{
+
+list-style:none;
+
+}
