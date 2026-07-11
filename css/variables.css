@@ -1,104 +1,258 @@
 /* ===========================================
-   KIVUSTREAM PRO
+   KIVUSTREAM PRO ALT3
    DESIGN SYSTEM
+   PART 1/6
 =========================================== */
 
 :root{
 
-/* ===========================
+/* ===========================================
    BRAND COLORS
-=========================== */
+=========================================== */
 
 --primary:#2563EB;
 --primary-hover:#1D4ED8;
+--primary-light:#60A5FA;
+--primary-dark:#1E3A8A;
 
 --secondary:#10B981;
 --secondary-hover:#059669;
+--secondary-light:#34D399;
+--secondary-dark:#047857;
 
 --accent:#FACC15;
 --accent-hover:#EAB308;
+--accent-light:#FDE047;
+--accent-dark:#CA8A04;
 
 --success:#22C55E;
 --warning:#F59E0B;
 --danger:#EF4444;
+--info:#38BDF8;
 
-/* ===========================
-   BACKGROUNDS
-=========================== */
+/* ===========================================
+   BACKGROUND COLORS
+=========================================== */
 
 --bg:#0B1220;
 --bg-secondary:#111827;
+--bg-tertiary:#1E293B;
+
 --surface:#172033;
 --surface-hover:#1F2937;
 --surface-light:#263246;
 
-/* ===========================
-   TEXT
-=========================== */
+--footer-bg:#08111E;
+--modal-bg:#101827;
+
+/* ===========================================
+   TEXT COLORS
+=========================================== */
 
 --text:#FFFFFF;
+
 --text-secondary:#D1D5DB;
+
 --text-muted:#94A3B8;
+
 --text-disabled:#64748B;
 
-/* ===========================
-   BORDERS
-=========================== */
+--text-dark:#0F172A;
+
+/* ===========================================
+   BORDER COLORS
+=========================================== */
 
 --border:#334155;
+
 --border-light:#475569;
 
-/* ===========================
+--border-focus:#2563EB;
+
+/* ===========================================
    BADGES
-=========================== */
+=========================================== */
 
---hd:#2563EB;
---premium:#FACC15;
---new:#10B981;
---top10:#EF4444;
+--badge-hd:#2563EB;
 
-/* ===========================
+--badge-4k:#8B5CF6;
+
+--badge-new:#10B981;
+
+--badge-premium:#FACC15;
+
+--badge-top10:#EF4444;
+
+--badge-imdb:#F5C518;
+
+/* ===========================================
    OVERLAYS
-=========================== */
+=========================================== */
 
---overlay-dark:rgba(0,0,0,.72);
---overlay-light:rgba(255,255,255,.08);
+--overlay-dark:
+rgba(0,0,0,.72);
 
-/* ===========================
+--overlay-medium:
+rgba(0,0,0,.55);
+
+--overlay-light:
+rgba(255,255,255,.08);
+
+--hero-overlay:
+linear-gradient(
+90deg,
+rgba(11,18,32,.95),
+rgba(11,18,32,.55),
+rgba(11,18,32,.15),
+transparent
+);
+
+/* ===========================================
    GLASS
-=========================== */
+=========================================== */
 
---glass:rgba(255,255,255,.06);
---glass-border:rgba(255,255,255,.12);
+--glass:
+rgba(255,255,255,.06);
 
-/* ===========================
+--glass-hover:
+rgba(255,255,255,.10);
+
+--glass-border:
+rgba(255,255,255,.12);
+
+--glass-blur:
+blur(14px);
+
+/* ===========================================
+   GRADIENTS
+=========================================== */
+
+--primary-gradient:
+linear-gradient(
+135deg,
+#2563EB,
+#10B981
+);
+
+--accent-gradient:
+linear-gradient(
+135deg,
+#FACC15,
+#F59E0B
+);
+
+--dark-gradient:
+linear-gradient(
+180deg,
+rgba(11,18,32,.2),
+rgba(11,18,32,.98)
+);
+
+--card-gradient:
+linear-gradient(
+180deg,
+transparent,
+rgba(0,0,0,.85)
+);
+
+/* ===========================================
    SHADOWS
-=========================== */
+=========================================== */
 
---shadow-xs:0 2px 6px rgba(0,0,0,.15);
+--shadow-xs:
+0 2px 6px rgba(0,0,0,.15);
 
---shadow-sm:0 6px 16px rgba(0,0,0,.22);
+--shadow-sm:
+0 6px 16px rgba(0,0,0,.22);
 
---shadow-md:0 12px 28px rgba(0,0,0,.30);
+--shadow-md:
+0 12px 28px rgba(0,0,0,.30);
 
---shadow-lg:0 20px 40px rgba(0,0,0,.40);
+--shadow-lg:
+0 20px 40px rgba(0,0,0,.40);
 
---shadow-xl:0 35px 80px rgba(0,0,0,.55);
+--shadow-xl:
+0 35px 80px rgba(0,0,0,.55);
 
-/* ===========================
-   RADIUS
-=========================== */
+--shadow-primary:
+0 15px 40px rgba(37,99,235,.35);
+
+--shadow-green:
+0 15px 40px rgba(16,185,129,.30);
+
+/* ===========================================
+   BORDER RADIUS
+=========================================== */
 
 --radius-xs:6px;
---radius-sm:10px;
---radius-md:16px;
---radius-lg:22px;
---radius-xl:30px;
---radius-round:999px;
 
-/* ===========================
+--radius-sm:10px;
+
+--radius-md:16px;
+
+--radius-lg:22px;
+
+--radius-xl:30px;
+
+--radius-round:999px;
+   /* ===========================================
+   TYPOGRAPHY
+=========================================== */
+
+--font-main:"Inter",sans-serif;
+
+--font-heading:"Inter",sans-serif;
+
+--font-mono:"Consolas","Courier New",monospace;
+
+
+/* Font Weights */
+
+--fw-thin:100;
+--fw-extra-light:200;
+--fw-light:300;
+--fw-normal:400;
+--fw-medium:500;
+--fw-semibold:600;
+--fw-bold:700;
+--fw-extra-bold:800;
+--fw-black:900;
+
+
+/* Font Sizes */
+
+--fs-2xs:.65rem;
+--fs-xs:.75rem;
+--fs-sm:.875rem;
+--fs-md:1rem;
+--fs-lg:1.125rem;
+--fs-xl:1.25rem;
+--fs-2xl:1.5rem;
+--fs-3xl:2rem;
+--fs-4xl:2.75rem;
+--fs-5xl:3.5rem;
+--fs-6xl:4.5rem;
+
+
+/* Line Heights */
+
+--lh-tight:1.15;
+--lh-normal:1.5;
+--lh-relaxed:1.8;
+
+
+/* Letter Spacing */
+
+--ls-tight:-.03em;
+--ls-normal:0;
+--ls-wide:.04em;
+
+
+/* ===========================================
    SPACING
-=========================== */
+=========================================== */
+
+--space-0:0;
 
 --space-1:4px;
 --space-2:8px;
@@ -112,246 +266,134 @@
 --space-10:64px;
 --space-11:80px;
 --space-12:100px;
+--space-13:120px;
+--space-14:140px;
 
-/* ===========================
-   LAYOUT
-=========================== */
+
+/* ===========================================
+   CONTAINERS
+=========================================== */
 
 --container:1600px;
+
+--container-large:1800px;
+
+--container-small:1200px;
+
+--container-padding:5%;
+
+
+/* ===========================================
+   LAYOUT
+=========================================== */
 
 --navbar-height:80px;
 
 --hero-height:88vh;
 
+--section-spacing:90px;
+
+--section-gap:28px;
+
+--content-width:760px;
+
+
+/* ===========================================
+   HERO
+=========================================== */
+
+--hero-title-size:4.2rem;
+
+--hero-description-size:1.05rem;
+
+--hero-button-height:54px;
+
+--hero-content-width:700px;
+
+--hero-backdrop-scale:1.06;
+
+
+/* ===========================================
+   MOVIE CARDS
+=========================================== */
+
 --card-width:220px;
 
 --card-height:330px;
 
-/* ===========================
-   TRANSITIONS
-=========================== */
+--card-gap:18px;
 
---transition-fast:.18s ease;
-
---transition:.3s ease;
-
---transition-slow:.45s ease;
-
-/* ===========================
-   Z INDEX
-=========================== */
-
---z-loader:99999;
---z-modal:9999;
---z-navbar:1000;
---z-overlay:900;
-
-/* ===========================
-   TYPOGRAPHY
-=========================== */
-
---font-main:"Inter",;
-
---fw-light:300;
---fw-normal:400;
---fw-medium:500;
---fw-semibold:600;
---fw-bold:700;
---fw-extrabold:800;
-
---fs-xs:.75rem;
---fs-sm:.875rem;
---fs-md:1rem;
---fs-lg:1.15rem;
---fs-xl:1.4rem;
---fs-2xl:2rem;
---fs-3xl:3rem;
---fs-4xl:4rem;
-
-/* ===========================
-   POSTERS
-=========================== */
+--card-radius:18px;
 
 --poster-radius:18px;
+
+--poster-fit:cover;
+
+--card-hover:translateY(-10px);
+
+--card-scale:1.05;
+
+--card-info-height:92px;
 
 --poster-shadow:
 0 12px 30px rgba(0,0,0,.45);
 
-/* ===========================
+
+/* ===========================================
    BUTTONS
-=========================== */
+=========================================== */
 
 --btn-height:48px;
 
+--btn-large-height:56px;
+
+--btn-small-height:36px;
+
 --btn-radius:14px;
 
-/* ===========================
-   SEARCH
-=========================== */
+--btn-padding:0 24px;
 
---search-height:56px;
-
-/* ===========================
-   FOOTER
-=========================== */
-
---footer-bg:#08111E;
-
-}
 
 /* ===========================================
-   RESET
+   SEARCH
 =========================================== */
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+--search-height:58px;
 
-html{
+--search-width:900px;
 
-scroll-behavior:smooth;
-
-}
-
-body{
-
-background:var(--bg);
-
-color:var(--text);
-
-font-family:var(--font-main);
-
-overflow-x:hidden;
-
-}
-
-button{
-
-font-family:inherit;
-
-}
-
-input{
-
-font-family:inherit;
-
-}
-
-img{
-
-display:block;
-
-max-width:100%;
-
-}
-
-a{
-
-text-decoration:none;
-
-color:inherit;
-
-}
-
-ul{
-
-list-style:none;
-
-}
-/* ===========================
-   COMPONENT VARIABLES
-=========================== */
+--search-radius:18px;
 
 
-/* NAVBAR */
+/* ===========================================
+   WATCH PAGE
+=========================================== */
+
+--player-radius:22px;
+
+--player-height:75vh;
+
+--sidebar-width:360px;
+
+
+/* ===========================================
+   FOOTER
+=========================================== */
+
+--footer-padding:80px;
+
+--footer-gap:50px;
+
+
+/* ===========================================
+   NAVBAR
+=========================================== */
 
 --navbar-bg:
-
 rgba(11,18,32,.88);
 
+--navbar-shadow:
+0 10px 35px rgba(0,0,0,.35);
 
-
-/* HERO */
-
---hero-overlay:
-
-linear-gradient(
-
-90deg,
-
-rgba(11,18,32,.95),
-
-rgba(11,18,32,.45),
-
-transparent
-
-);
-
-
-
-/* MOVIE CARDS */
-
---card-hover:
-
-translateY(-10px);
-
-
-
---card-gap:
-
-18px;
-
-
-
-
-/* GRADIENTS */
-
-
---blue-green-gradient:
-
-linear-gradient(
-
-135deg,
-
-#2563EB,
-
-#10B981
-
-);
-
-
-
---yellow-gradient:
-
-linear-gradient(
-
-135deg,
-
-#FACC15,
-
-#F59E0B
-
-);
-
-
-
-
-/* GLASS EFFECT */
-
-
---glass-blur:
-
-blur(12px);
-
-
-
-/* CONTAINER */
-
-
---container-padding:
-
-5%;
-
-
+--navbar-blur:
+blur(16px);
