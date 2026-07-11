@@ -9,17 +9,66 @@
 /* ===========================================
    GLOBAL BODY
 =========================================== */
-
 body{
 
-    background:var(--bg);
+background:
 
-    color:var(--text);
+var(--bg);
 
-    min-height:100vh;
+
+color:
+
+var(--text);
+
+
+font-family:
+
+var(--font-main);
+
+
+overflow-x:hidden;
+
+
+line-height:1.5;
+
+
+}
+.container{
+
+width:100%;
+
+max-width:var(--container);
+
+margin:auto;
+
+padding-left:var(--container-padding);
+
+padding-right:var(--container-padding);
+
+}
+::-webkit-scrollbar{
+
+height:8px;
+
+width:8px;
 
 }
 
+
+::-webkit-scrollbar-track{
+
+background:var(--bg-secondary);
+
+}
+
+
+::-webkit-scrollbar-thumb{
+
+background:var(--primary);
+
+border-radius:var(--radius-round);
+
+}
 
 /* ===========================================
    APP CONTAINER
