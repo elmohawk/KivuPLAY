@@ -1,10 +1,15 @@
 /* ===========================================
    KIVUSTREAM PRO
-   HERO COMPONENT
+   SMART HERO SYSTEM
 =========================================== */
 
 
-import { getFeaturedMovies }
+import { 
+
+getFeaturedMovies,
+getMovies
+
+}
 
 from "../api/supabase.js";
 
@@ -12,11 +17,9 @@ from "../api/supabase.js";
 
 import {
 
+getTrending,
 getMovieDetails,
-
-getBackdrop,
-
-getTrailer
+getBackdrop
 
 }
 
@@ -25,26 +28,22 @@ from "../api/tmdb.js";
 
 
 
-
 let heroMovies = [];
 
 let currentHero = 0;
 
-let heroTimer;
-
-
+let timer;
 
 
 
 
 
 /* ===========================================
-   CREATE HERO HTML
+   HERO TEMPLATE
 =========================================== */
 
 
-function createHero(){
-
+function heroTemplate(){
 
 
 return `
@@ -53,15 +52,9 @@ return `
 <section id="hero">
 
 
-
 <div class="hero-backdrop"></div>
 
-
 <div class="hero-overlay"></div>
-
-
-<div class="hero-bottom-fade"></div>
-
 
 
 
@@ -69,12 +62,11 @@ return `
 
 
 
-<div class="hero-badge">
+<span class="hero-badge">
 
 Featured
 
-</div>
-
+</span>
 
 
 
@@ -87,13 +79,11 @@ Loading...
 
 
 
-
 <p class="hero-description">
 
-Loading movie information...
+Please wait...
 
 </p>
-
 
 
 
@@ -106,6 +96,7 @@ Loading movie information...
 ⭐ -
 
 </span>
+
 
 
 <span class="hero-year">
@@ -122,33 +113,26 @@ Loading movie information...
 
 
 
-
 <div class="hero-actions">
 
 
-
-<button class="btn hero-watch">
-
+<button class="hero-watch">
 
 <i class="fa-solid fa-play"></i>
 
 Watch Now
 
-
 </button>
 
 
 
 
-
-<button class="btn hero-trailer">
-
+<button class="hero-trailer">
 
 <i class="fa-solid fa-video"></i>
 
 Trailer
 
-
 </button>
 
 
@@ -162,16 +146,7 @@ Trailer
 
 
 
-
-
-
-<div class="hero-controls">
-
-
-</div>
-
-
-
+<div class="hero-controls"></div>
 
 
 
@@ -180,18 +155,14 @@ Trailer
 
 `;
 
-
-
 }
 
 
 
 
 
-
-
 /* ===========================================
-   RENDER HERO
+   LOAD HERO
 =========================================== */
 
 
@@ -201,9 +172,9 @@ export async function renderHero(){
 
 const container =
 
-document.querySelector(
+document.getElementById(
 
-"#hero-container"
+"hero-container"
 
 );
 
@@ -216,52 +187,26 @@ return;
 
 
 
-
 container.innerHTML =
 
-createHero();
+heroTemplate();
 
 
 
 
 
-heroMovies =
-
-await getFeaturedMovies();
+await loadHeroMovies();
 
 
 
 
+if(heroMovies.length){
 
-
-if(!heroMovies.length){
-
-
-
-console.warn(
-
-"No featured movies found"
-
-);
-
-
-return;
-
-
-}
-
-
-
-
-
-await updateHero();
-
-
-
-
-
+updateHero();
 
 startSlider();
+
+}
 
 
 
@@ -274,7 +219,112 @@ startSlider();
 
 
 /* ===========================================
-   UPDATE HERO DATA
+   HERO DATA PRIORITY
+=========================================== */
+
+
+async function loadHeroMovies(){
+
+
+
+// 1. Featured movies
+
+
+let movies =
+
+await getFeaturedMovies();
+
+
+
+
+
+// 2. Latest movies
+
+
+if(!movies.length){
+
+
+console.log(
+
+"No featured movies. Loading latest..."
+
+);
+
+
+
+movies =
+
+(await getMovies())
+
+.slice(0,10);
+
+
+
+}
+
+
+
+
+
+
+// 3. TMDB fallback
+
+
+if(!movies.length){
+
+
+console.log(
+
+"Using TMDB fallback"
+
+);
+
+
+
+const tmdb =
+
+await getTrending();
+
+
+
+movies =
+
+tmdb.results || [];
+
+
+
+}
+
+
+
+
+
+
+heroMovies = movies;
+
+
+
+console.log(
+
+"Hero Movies:",
+
+heroMovies
+
+);
+
+
+
+}
+
+
+
+
+
+
+
+
+/* ===========================================
+   UPDATE HERO
 =========================================== */
 
 
@@ -289,8 +339,7 @@ heroMovies[currentHero];
 
 
 
-let tmdbData = null;
-
+let info = null;
 
 
 
@@ -298,8 +347,7 @@ let tmdbData = null;
 if(movie.tmdb_id){
 
 
-
-tmdbData =
+info =
 
 await getMovieDetails(
 
@@ -315,15 +363,44 @@ movie.tmdb_id
 
 
 
+
+const title =
+
+info?.title ||
+
+movie.title ||
+
+movie.name;
+
+
+
+
+
+
+const description =
+
+info?.overview ||
+
+movie.overview ||
+
+movie.description ||
+
+"No description available";
+
+
+
+
+
+
 const backdrop =
 
-tmdbData?.backdrop_path
+info?.backdrop_path
 
 ?
 
 getBackdrop(
 
-tmdbData.backdrop_path
+info.backdrop_path
 
 )
 
@@ -333,43 +410,13 @@ movie.backdrop;
 
 
 
-const title =
-
-tmdbData?.title
-
-||
-
-movie.title;
-
-
-
-
-
-const description =
-
-tmdbData?.overview
-
-||
-
-movie.description
-
-||
-
-"";
-
-
-
 
 
 const rating =
 
-tmdbData?.vote_average
+info?.vote_average ||
 
-||
-
-movie.rating
-
-||
+movie.rating ||
 
 "";
 
@@ -379,13 +426,15 @@ movie.rating
 
 const year =
 
-tmdbData?.release_date
+info?.release_date
 
 ?
 
-tmdbData.release_date.substring(0,4)
+info.release_date.substring(0,4)
 
 :
+
+movie.year ||
 
 "";
 
@@ -396,11 +445,13 @@ tmdbData.release_date.substring(0,4)
 
 const hero =
 
-document.querySelector(
+document.getElementById(
 
-"#hero"
+"hero"
 
 );
+
+
 
 
 
@@ -417,12 +468,9 @@ hero.querySelector(
 
 ".hero-backdrop"
 
-)
-
-.style.backgroundImage =
+).style.backgroundImage =
 
 `url(${backdrop})`;
-
 
 
 
@@ -433,9 +481,10 @@ hero.querySelector(
 
 ".hero-title"
 
-)
+).textContent =
 
-.textContent = title;
+title;
+
 
 
 
@@ -445,9 +494,10 @@ hero.querySelector(
 
 ".hero-description"
 
-)
+).textContent =
 
-.textContent = description;
+description;
+
 
 
 
@@ -457,11 +507,11 @@ hero.querySelector(
 
 ".hero-rating"
 
-)
-
-.textContent =
+).textContent =
 
 `⭐ ${rating}`;
+
+
 
 
 
@@ -470,18 +520,9 @@ hero.querySelector(
 
 ".hero-year"
 
-)
+).textContent =
 
-.textContent = year;
-
-
-
-
-
-
-createDots();
-
-
+year;
 
 
 
@@ -491,119 +532,8 @@ createDots();
 
 
 
-
-
 /* ===========================================
-   DOT CONTROLS
-=========================================== */
-
-
-function createDots(){
-
-
-
-const controls =
-
-document.querySelector(
-
-".hero-controls"
-
-);
-
-
-
-if(!controls)
-
-return;
-
-
-
-
-controls.innerHTML =
-
-heroMovies.map(
-
-(movie,index)=>`
-
-
-<div
-
-class="hero-dot ${
-
-index===currentHero
-
-?
-
-"active"
-
-:
-
-""
-
-}"
-
-data-index="${index}"
-
-></div>
-
-
-`
-
-).join("");
-
-
-
-
-
-controls
-
-.querySelectorAll(
-
-".hero-dot"
-
-)
-
-.forEach(dot=>{
-
-
-dot.onclick=()=>{
-
-
-currentHero =
-
-Number(
-
-dot.dataset.index
-
-);
-
-
-
-updateHero();
-
-
-
-resetTimer();
-
-
-
-};
-
-
-});
-
-
-
-}
-
-
-
-
-
-
-
-/* ===========================================
-   AUTO SLIDER
+   SLIDER
 =========================================== */
 
 
@@ -611,9 +541,8 @@ function startSlider(){
 
 
 
-heroTimer =
+timer = setInterval(()=>{
 
-setInterval(()=>{
 
 
 currentHero++;
@@ -624,11 +553,11 @@ if(
 
 currentHero >= heroMovies.length
 
-){
+)
 
+{
 
 currentHero=0;
-
 
 }
 
@@ -638,31 +567,8 @@ updateHero();
 
 
 
-},
+},8000);
 
-8000);
-
-
-
-}
-
-
-
-
-
-
-
-function resetTimer(){
-
-
-clearInterval(
-
-heroTimer
-
-);
-
-
-startSlider();
 
 
 }
