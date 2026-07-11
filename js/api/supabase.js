@@ -55,132 +55,137 @@ export const supabase = createClient(
  created_at
 
 */
+/* ===========================================
+   GET ALL MOVIES
+=========================================== */
 
 
 export async function getMovies(){
 
 
-    const {
+const {
 
-        data,
+data,
 
-        error
+error
 
+}= await supabase
 
-    } = await supabase
+.from("movies")
 
+.select("*")
 
-    .from("movies")
+.order(
 
+"created_at",
 
-    .select("*")
+{
 
+ascending:false
 
-    .order(
+}
 
-        "created_at",
-
-        {
-
-            ascending:false
-
-        }
-
-    );
+);
 
 
 
-    if(error){
+if(error){
 
-        console.error(
-            "Movies Error:",
-            error
-        );
+console.error(
 
-        return [];
+"Supabase Movies Error:",
 
-    }
+error
 
+);
 
 
-    return data;
+return [];
+
+}
+
+
+
+return data;
 
 
 
 }
+
+
 
 
 
 
 
 /* ===========================================
-   FEATURED MOVIES
+   GET FEATURED MOVIES
 =========================================== */
 
 
 export async function getFeaturedMovies(){
 
 
-    const {
+const {
 
+data,
 
-        data,
+error
 
+}= await supabase
 
-        error
+.from("movies")
 
+.select("*")
 
-    } = await supabase
+.eq(
 
+"featured",
 
-    .from("movies")
+true
 
+)
 
-    .select("*")
+.order(
 
+"created_at",
 
-    .eq(
+{
 
-        "featured",
+ascending:false
 
-        true
+}
 
-    )
+)
 
-
-    .limit(10);
-
-
-
-    if(error){
-
-
-        console.error(
-
-            "Featured Error:",
-
-            error
-
-        );
-
-
-        return [];
-
-
-    }
+.limit(10);
 
 
 
-    return data;
 
 
+if(error){
+
+console.error(
+
+"Featured Error:",
+
+error
+
+);
+
+
+return [];
 
 }
 
 
 
+return data;
 
 
+
+}
 /* ===========================================
    CATEGORY MOVIES
 =========================================== */
