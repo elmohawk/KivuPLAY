@@ -1,7 +1,9 @@
 /* ===========================================
    KIVUSTREAM PRO
-   NAVBAR COMPONENT
+   PREMIUM NAVBAR COMPONENT
 =========================================== */
+
+
 import {
 
 getCurrentUser,
@@ -11,6 +13,10 @@ logoutUser
 
 from "../auth.js";
 
+
+
+
+
 /* ===========================================
    CREATE NAVBAR
 =========================================== */
@@ -18,7 +24,9 @@ from "../auth.js";
 
 export function createNavbar(){
 
+
 return `
+
 
 <header id="navbar">
 
@@ -27,6 +35,9 @@ return `
 <!-- LOGO -->
 
 <div class="logo">
+
+
+<a href="index.html">
 
 
 <i class="fa-solid fa-play"></i>
@@ -39,6 +50,9 @@ KivuStream
 </span>
 
 
+</a>
+
+
 </div>
 
 
@@ -46,18 +60,37 @@ KivuStream
 
 
 
+
+<!-- MOBILE BUTTON -->
+
+
+<button
+
+class="mobile-menu-btn"
+
+id="mobile-menu-btn"
+
+>
+
+
+<i class="fa-solid fa-bars"></i>
+
+
+</button>
+
+
+
 <!-- NAVIGATION -->
 
 
-<nav class="nav-links">
+<nav class="nav-links" id="nav-links">
 
 
-<a href="#home">
+<a href="index.html">
 
 Home
 
 </a>
-
 
 
 <a href="#movies">
@@ -67,13 +100,11 @@ Movies
 </a>
 
 
-
 <a href="#series">
 
 Series
 
 </a>
-
 
 
 <a href="#categories">
@@ -83,31 +114,22 @@ Categories
 </a>
 
 
+<a href="#recommended">
+
+Recommended
+
+</a>
+
 
 <a href="#about">
 
 About
 
 </a>
-
-
-
 </nav>
 
-
-
-
-
-
-
-<!-- ACTIONS -->
-
-
+<!-- ACTION AREA -->
 <div class="nav-actions">
-
-
-
-
 
 <button
 
@@ -118,19 +140,59 @@ id="search-btn"
 title="Search"
 
 >
-
-
 <i class="fa-solid fa-search"></i>
 
+</button>
+<button
+
+class="login-btn"
+
+id="login-btn"
+
+>
+Login
 
 </button>
+</div>
+</header>
+
+`;
+
+}
+/* ===========================================
+   RENDER NAVBAR
+=========================================== */
+export function renderNavbar(){
+const container =
+
+document.querySelector(
+
+"#navbar-container"
+
+);
+if(!container){
+console.warn(
+
+"Navbar container missing"
+
+);
+return;
 
 
+}
+container.innerHTML =
 
+createNavbar();
+}
 
+/* ===========================================
+   INIT NAVBAR EVENTS
+=========================================== */
+export async function initNavbar(){
 
-
-<button
+/*
+LOGIN USER STATUS
+*/
 const loginButton =
 
 document.querySelector(
@@ -139,129 +201,50 @@ document.querySelector(
 
 );
 
-
-
 if(loginButton){
-
-
-loginButton.addEventListener(
-
-"click",
-
-async()=>{
-
 
 const user =
 
 await getCurrentUser();
 
-
-
 if(user){
 
 
+loginButton.textContent=
+
+"Logout";
+
+
+}
+loginButton.onclick = async()=>{
+
+const current =
+
+await getCurrentUser();
+
+if(current){
 await logoutUser();
-
-
 
 loginButton.textContent=
 
 "Login";
 
-
 }
 
 else{
-
-
 window.location.href=
 
 "login.html";
 
+}
+
+};
 
 }
 
-
-
-});
-
-
-}
-</button>
-
-
-
-
-</div>
-
-
-
-
-
-</header>
-
-
-
-`;
-
-
-
-}
-
-
-
-
-
-
-
-/* ===========================================
-   LOAD NAVBAR
-=========================================== */
-
-
-export function renderNavbar(){
-
-
-
-const container =
-
-document.querySelector(
-
-"#navbar-container"
-
-);
-
-
-
-if(!container)
-
-return;
-
-
-
-
-container.innerHTML =
-
-createNavbar();
-
-
-
-}
-
-
-
-
-
-
-
-/* ===========================================
-   NAVBAR EVENTS
-=========================================== */
-
-
-export function initNavbar(){
-
-
+/*
+SEARCH BUTTON
+*/
 
 const searchButton =
 
@@ -271,18 +254,9 @@ document.querySelector(
 
 );
 
-
-
 if(searchButton){
 
-
-
-searchButton.addEventListener(
-
-"click",
-
-()=>{
-
+searchButton.onclick=()=>{
 
 const search =
 
@@ -292,116 +266,67 @@ document.querySelector(
 
 );
 
-
-
 if(search){
 
-
-search.classList.add(
-
-"active"
-
-);
-
-
-}
-
-
-
-}
-
-
-);
-
-
-
-}
-
-
-
-
-
-
-
-const loginButton =
-
-document.querySelector(
-
-"#login-btn"
-
-);
-
-
-
-if(loginButton){
-
-
-
-loginButton.addEventListener(
-
-"click",
-
-()=>{
-
-
-const modal =
-
-document.querySelector(
-
-"#login-modal"
-
-);
-
-
-
-if(modal){
-
-
-modal.classList.add(
+search.classList.toggle(
 
 "active"
 
 );
 
-
 }
 
-
-
+};
 }
-
-
-);
-
-
-
-}
-
-
-
-
-
-
 /*
-
-Navbar scroll effect
-
-Works with:
-
-#navbar.scrolled
-
-from style.css
-
+MOBILE MENU
 */
 
+const mobileButton =
+
+document.querySelector(
+
+"#mobile-menu-btn"
+
+);
+
+const navLinks =
+
+document.querySelector(
+
+"#nav-links"
+
+);
+
+if(
+
+mobileButton && navLinks
+
+){
+
+mobileButton.onclick=()=>{
+navLinks.classList.toggle(
+
+"active"
+
+);
 
 
+
+};
+
+
+
+}
+
+/*
+NAVBAR SCROLL EFFECT
+*/
 window.addEventListener(
 
 "scroll",
 
 ()=>{
-
 
 const navbar =
 
@@ -411,30 +336,20 @@ document.querySelector(
 
 );
 
-
-
 if(!navbar)
 
 return;
 
-
-
-
-if(window.scrollY > 50){
-
+if(window.scrollY > 40){
 
 navbar.classList.add(
 
 "scrolled"
 
 );
-
-
-
 }
 
 else{
-
 
 navbar.classList.remove(
 
@@ -442,18 +357,9 @@ navbar.classList.remove(
 
 );
 
-
-
 }
 
-
-
 }
-
-
-
 );
-
-
 
 }
