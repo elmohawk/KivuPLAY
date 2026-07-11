@@ -29,6 +29,115 @@ from "./api/tmdb.js";
 import { renderMovieCards }
 
 from "./components/movieCard.js";
+/* ===========================================
+   LOAD SUPABASE MOVIES
+=========================================== */
+
+async function loadSupabaseMovies(){
+
+const movies =
+
+await getMovies();
+console.log(
+
+"Supabase Movies:",
+
+movies
+
+);
+
+const sections = {
+
+trending:
+
+movies,
+
+
+latestMovies:
+
+movies.filter(
+
+m=>m.type==="movie"
+
+),
+latestSeries:
+
+movies.filter(
+
+m=>m.type==="series"
+
+),
+recommended:
+
+movies.filter(
+
+m=>m.recommended===true
+
+)
+};
+
+Object.entries(sections)
+
+.forEach(([id,list])=>{
+
+const section =
+
+document.getElementById(id);
+
+if(!section)
+
+return;
+
+section.innerHTML=`
+
+<div class="home-section">
+<div class="section-header">
+
+<div class="section-heading">
+
+
+<h2>
+
+${id}
+
+</h2>
+
+
+</div>
+
+
+</div>
+
+
+
+<div class="movie-slider"></div>
+
+
+
+</div>
+
+
+`;
+
+const slider =
+
+section.querySelector(
+
+".movie-slider"
+
+);
+
+renderMovieCards(
+
+slider,
+
+list
+
+);
+
+});
+
+}
 
 /* ===========================================
    APP START
