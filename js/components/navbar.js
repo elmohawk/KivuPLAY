@@ -2,8 +2,14 @@
    KIVUSTREAM PRO
    NAVBAR COMPONENT
 =========================================== */
+import {
 
+getCurrentUser,
+logoutUser
 
+}
+
+from "../auth.js";
 
 /* ===========================================
    CREATE NAVBAR
@@ -12,11 +18,7 @@
 
 export function createNavbar(){
 
-
-
 return `
-
-
 
 <header id="navbar">
 
@@ -129,17 +131,62 @@ title="Search"
 
 
 <button
+const loginButton =
 
-class="login-btn"
+document.querySelector(
 
-id="login-btn"
+"#login-btn"
 
->
-
-
-Login
+);
 
 
+
+if(loginButton){
+
+
+loginButton.addEventListener(
+
+"click",
+
+async()=>{
+
+
+const user =
+
+await getCurrentUser();
+
+
+
+if(user){
+
+
+await logoutUser();
+
+
+
+loginButton.textContent=
+
+"Login";
+
+
+}
+
+else{
+
+
+window.location.href=
+
+"login.html";
+
+
+}
+
+
+
+});
+
+
+}
 </button>
 
 
