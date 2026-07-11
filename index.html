@@ -5,139 +5,77 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>KivuStream | Watch Movies & TV Shows</title>
+<title>KivuStream</title>
 
-<meta name="theme-color" content="#2563eb">
+<meta name="theme-color" content="#2563EB">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
 
+<link rel="stylesheet" href="css/variables.css">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/responsive.css">
-<link rel="stylesheet" href="css/animations.css">
 
 </head>
 
 <body>
 
 <div id="loader">
-
-<div class="spinner"></div>
-
-<h2>KivuStream</h2>
-
+    <div class="loader-spinner"></div>
+    <h2>KivuStream</h2>
 </div>
 
 <div id="app">
 
-<header class="navbar">
-
-<div class="logo">
-
-<i class="fa-solid fa-play"></i>
-
-<span>KivuStream</span>
-
-</div>
-
-<nav>
-
-<a href="#">Home</a>
-
-<a href="#">Movies</a>
-
-<a href="#">Series</a>
-
-<a href="#">Trending</a>
-
-<a href="#">Categories</a>
-
-</nav>
-
-<div class="actions">
-
-<button class="search-btn">
-
-<i class="fa fa-search"></i>
-
-</button>
-
-<button class="login-btn">
-
-Login
-
-</button>
-
-</div>
-
-</header>
-
-<section class="hero">
-
-<div class="overlay"></div>
-
-<div class="hero-content">
-
-<span class="badge">FEATURED</span>
-
-<h1>The Future Begins</h1>
-
-<p>
-Watch thousands of blockbuster movies and TV series in HD.
-</p>
-
-<div class="hero-buttons">
-
-<button class="watch">
-
-<i class="fa fa-play"></i>
-
-Watch Now
-
-</button>
-
-<button class="info">
-
-<i class="fa fa-circle-info"></i>
-
-More Info
-
-</button>
-
-</div>
-
-</div>
-
-</section>
+<header id="navbar"></header>
 
 <main>
 
-<section class="movies">
+<section id="hero"></section>
 
-<h2>Trending Movies</h2>
+<section id="trending"></section>
 
-<div id="movie-grid" class="movie-grid"></div>
+<section id="latestMovies"></section>
 
-</section>
+<section id="latestSeries"></section>
+
+<section id="action"></section>
+
+<section id="comedy"></section>
+
+<section id="drama"></section>
+
+<section id="romance"></section>
+
+<section id="crime"></section>
+
+<section id="scifi"></section>
+
+<section id="animation"></section>
+
+<section id="indian"></section>
+
+<section id="horror"></section>
+
+<section id="highschool"></section>
+
+<section id="tvseries"></section>
+
+<section id="recommended"></section>
 
 </main>
 
-<footer>
-
-<p>
-
-© 2026 KivuStream
-
-</p>
-
-</footer>
+<footer id="footer"></footer>
 
 </div>
+
+<div id="modal"></div>
+
+<div id="toast-container"></div>
 
 <script type="module" src="js/app.js"></script>
 
